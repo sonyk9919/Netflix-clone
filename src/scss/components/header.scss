@@ -1,0 +1,102 @@
+@import "../index.scss";
+
+.Wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-width: 32rem;
+  height: 7rem;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  @include mobile {
+    width: 100%;
+    padding: 0 2rem;
+  }
+  @include tablet {
+    width: 80%;
+  }
+  @include desktop {
+    width: 70%;
+  }
+}
+
+.logo {
+  color: rgba(255, 0, 0, 0.9);
+  &:hover {
+    color: rgba(255, 0, 0, 1);
+  }
+  font-weight: 600;
+  text-decoration: none;
+  @include mobile {
+    font-size: 2.5rem;
+  }
+  @include tablet {
+    font-size: 3rem;
+  }
+  @include desktop {
+    font-size: 3.5rem;
+  }
+}
+
+.column {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  .search {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+  }
+  .badge {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgb(250, 52, 52);
+    position: absolute;
+    bottom: -1rem;
+    left: 35%;
+  }
+  ul {
+    display: flex;
+    @include mobile {
+      margin-left: 1rem;
+    }
+    @include tablet {
+      margin-left: 2rem;
+    }
+    @include desktop {
+      margin-left: 3rem;
+    }
+  }
+  li {
+    position: relative;
+    a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+  li + li {
+    margin-left: 1rem;
+  }
+  input {
+    outline: none;
+    border: none;
+    font-weight: 400;
+    color: white;
+    background-color: rgb(61, 60, 60);
+    height: 2.5rem;
+    @include mobile {
+      width: 13rem;
+    }
+  }
+}
