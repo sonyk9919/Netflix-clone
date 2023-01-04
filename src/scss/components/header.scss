@@ -93,7 +93,7 @@
     border: none;
     font-weight: 400;
     color: white;
-    background-color: rgb(61, 60, 60);
+    background-color: $MainBlack;
     height: 2.5rem;
     @include mobile {
       width: 13rem;

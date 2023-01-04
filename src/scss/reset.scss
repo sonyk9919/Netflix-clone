@@ -1,3 +1,5 @@
+@import "./index.scss";
+
 html,
 body,
 div,
@@ -126,4 +128,5 @@ table {
 }
 html {
   font-size: 62.5%;
+  background-color: $MainBlack;
 }
