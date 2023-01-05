@@ -3,6 +3,7 @@ import axios from "axios";
 const APIKEY = process.env.REACT_APP_API_KEY;
 
 export interface IMovie {
+  _brand: "movie";
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -33,8 +34,19 @@ export const getNowPlayingMovies = async () => {
   return data.data;
 };
 
+export const getMovieDetails = async (id: number) => {
+  const data = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}&language=ko-KR`
+  );
+  return data.data;
+};
+
 export interface ITv {
+  _brand: "tv";
+  id: number;
   poster_path: string;
+  backdrop_path: string;
+  overview: string;
   name: string;
   vote_average: number;
 }
@@ -45,10 +57,17 @@ export interface ITvs {
   total_pages: number;
   total_results: number;
 }
+
 // Tv Shows
-export const getTvOnTheAir = async () => {
+export const getTvPopular = async () => {
   const data = await axios.get(
-    `https://api.themoviedb.org/3/tv/on_the_air?api_key=${APIKEY}&language=ko-KR&page=1`
+    `https://api.themoviedb.org/3/tv/popular?api_key=${APIKEY}&language=ko-KR&page=1`
   );
   return data.data;
+};
+
+export const getTvDetails = async (id: number) => {
+  const data = await axios.get(
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${APIKEY}&language=ko-KR`
+  );
 };

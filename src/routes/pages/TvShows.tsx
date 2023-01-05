@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react";
-import { getTvOnTheAir, IMovies } from "../../API/Movies";
+import { Outlet } from "react-router-dom";
+import { getTvPopular, ITvs } from "../../API/Movies";
 import Banner from "../../components/banner/banner";
+import Slider from "../../components/slider/slider";
 import "../../scss/pages/index.scss";
 
 const TvShows = () => {
-  const [tvOnTheAir, setTvOnTheAir] = useState<IMovies>();
+  const [tvOnTheAir, setTvOnTheAir] = useState<ITvs>();
 
   useEffect(() => {
-    getTvOnTheAir().then((movies) => setTvOnTheAir((prev) => movies));
+    getTvPopular().then((movies) => setTvOnTheAir((prev) => movies));
   }, []);
   return (
-    <div className="wrapper">
+    <div className="page__wrapper">
       {tvOnTheAir && <Banner movie={tvOnTheAir.results[0]} />}
+      {tvOnTheAir && <Slider contents={tvOnTheAir.results.slice(1)} />}
+      <Outlet />
     </div>
   );
 };

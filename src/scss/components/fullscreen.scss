@@ -1,0 +1,18 @@
+.fullScreen__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 90;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullScreen__info {
+  width: 50rem;
+  height: 50rem;
+  background-color: white;
+}

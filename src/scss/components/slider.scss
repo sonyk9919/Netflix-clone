@@ -1,0 +1,86 @@
+@import "../index.scss";
+
+.slider__wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 60;
+  .next,
+  .prev {
+    position: absolute;
+    height: 100%;
+    z-index: 5;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(40, 40, 40);
+    &:hover {
+      background-color: rgba(40, 40, 40, 0.904);
+    }
+    &:disabled {
+      opacity: 0;
+    }
+    @include mobile {
+      width: 3.5rem;
+      font-size: 3rem;
+    }
+    @include tablet {
+      width: 4.5rem;
+      font-size: 5rem;
+    }
+    @include desktop {
+      width: 5.5rem;
+      font-size: 6rem;
+    }
+  }
+  .next {
+    right: 0;
+  }
+
+  @include mobile {
+    min-height: 20rem;
+    & + & {
+      margin-top: 10rem;
+    }
+  }
+  @include tablet {
+    min-height: 25rem;
+    & + & {
+      margin-top: 15rem;
+    }
+  }
+  @include desktop {
+    min-height: 30rem;
+    & + & {
+      margin-top: 20rem;
+    }
+  }
+}
+
+.slider__row {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 3.5rem;
+  }
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 5rem;
+  }
+  @include desktop {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+    padding: 0 7rem;
+  }
+}
+
+.slider__col {
+  min-width: 13rem;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 80;
+}

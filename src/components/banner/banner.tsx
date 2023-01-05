@@ -1,24 +1,23 @@
-import { IMovie } from "../../API/Movies";
+import { IMovie, ITv } from "../../API/Movies";
 import { getPosterImg } from "../../API/Poster";
 import "../../scss/components/banner.scss";
 
 interface IProps {
-  movie: IMovie;
+  movie: IMovie | ITv;
 }
 
 const Banner = ({ movie }: IProps) => {
-  console.log(movie);
   return (
     <div
       className="banner"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${getPosterImg(
-          movie.poster_path
+          movie.backdrop_path
         )})`,
       }}
     >
       <div>
-        <p>{movie.overview}</p>
+        <p>{movie._brand === "movie" ? movie.overview : movie.overview}</p>
       </div>
     </div>
   );
