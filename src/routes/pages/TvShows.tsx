@@ -14,7 +14,13 @@ const TvShows = () => {
   return (
     <div className="page__wrapper">
       {tvOnTheAir && <Banner movie={tvOnTheAir.results[0]} />}
-      {tvOnTheAir && <Slider contents={tvOnTheAir.results.slice(1)} />}
+      {tvOnTheAir && (
+        <Slider
+          contents={tvOnTheAir.results.slice(1)}
+          category="현재 방영중인 TV프로그램"
+          sliderId={1}
+        />
+      )}
       <Outlet />
     </div>
   );

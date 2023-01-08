@@ -17,7 +17,13 @@ const Home = () => {
   return (
     <div className="page__wrapper">
       {nowPlaying && <Banner movie={nowPlaying.results[0]} />}
-      {nowPlaying && <Slider contents={nowPlaying.results.slice(1)} />}
+      {nowPlaying && (
+        <Slider
+          contents={nowPlaying.results.slice(1)}
+          category="현재 상영중인 영화"
+          sliderId={1}
+        />
+      )}
       <Outlet />
     </div>
   );

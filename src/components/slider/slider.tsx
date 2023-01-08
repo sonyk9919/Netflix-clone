@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps {
   contents: IMovie[] | ITv[];
+  category: string;
+  sliderId: number | string;
 }
 
 type IDevice = "mobile" | "tablet" | "desktop";
@@ -38,21 +40,32 @@ const SliderVar: Variants = {
 };
 
 const ElementVar: Variants = {
+  initial: {},
   hover: ({ device }) => ({
     scale: device === "desktop" ? 1.3 : device === "tablet" ? 1.2 : 1.1,
     zIndex: 85,
-    transition: { bounce: 0, delay: 0.5, duration: 0.5 },
+    transition: { bounce: 0, delay: 0.5, duration: 0.5, delayChildren: 0.7 },
   }),
 };
 
-const Slider = ({ contents }: IProps) => {
+const ElementImageVar: Variants = {
+  initial: { height: "100%" },
+  hover: { height: "80%", transition: { bounce: 0 } },
+};
+
+const ElementInfoVar: Variants = {
+  initial: { opacity: 0 },
+  hover: { opacity: 1, display: "flex", transition: { bounce: 0 } },
+};
+
+const Slider = ({ contents, category, sliderId }: IProps) => {
   const [device, setDevice] = useState<IDevice>(getDevice(window.innerWidth));
   const [header, setHeader] = useState<number>(0);
   const [inverse, setInverse] = useState<boolean>(false);
   const [animate, setAnimate] = useState<boolean>(false);
   const navigate = useNavigate();
   const onElementClick = (id: number) => {
-    navigate(`./${id}`);
+    navigate(`./${id}?${encodeURIComponent("id=" + sliderId)}`);
   };
   const reSize = () => {
     setDevice((prev) => getDevice(window.innerWidth));
@@ -126,6 +139,7 @@ const Slider = ({ contents }: IProps) => {
   }, []);
   return (
     <div className="slider__wrapper">
+      <p>{category}</p>
       <button
         className="prev"
         type="button"
@@ -157,18 +171,32 @@ const Slider = ({ contents }: IProps) => {
               onClick={() => {
                 onElementClick(item.id);
               }}
-              layoutId={item.id + ""}
+              layoutId={item.id + "" + sliderId}
+              initial="initial"
               whileHover="hover"
               className="slider__col"
               style={{
-                backgroundImage: `url(${
-                  item.backdrop_path !== null
-                    ? getPosterImg(item.backdrop_path)
-                    : NonImage
-                })`,
                 transformOrigin: getTransformOrigin(idx),
               }}
-            ></motion.div>
+            >
+              <motion.div
+                className="slider__col-image"
+                variants={ElementImageVar}
+                style={{
+                  backgroundImage: `url(${
+                    item.backdrop_path !== null
+                      ? getPosterImg(item.backdrop_path)
+                      : NonImage
+                  })`,
+                }}
+              />
+              <motion.div
+                className="slider__col-info"
+                variants={ElementInfoVar}
+              >
+                {item._brand === "movie" ? item.title : item.name}
+              </motion.div>
+            </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
