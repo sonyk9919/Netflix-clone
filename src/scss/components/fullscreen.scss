@@ -1,10 +1,12 @@
-.fullScreen__wrapper {
+@import "../index.scss";
+
+.fullScreen__background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 90;
+  z-index: 70;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
@@ -12,7 +14,60 @@
 }
 
 .fullScreen__info {
-  width: 50rem;
-  height: 50rem;
-  background-color: white;
+  background-color: rgb(48, 48, 48);
+  z-index: 99;
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  @include mobile {
+  }
+  @include tablet {
+    width: 70rem;
+    height: 85vh;
+  }
+  @include desktop {
+    width: 90rem;
+    height: 85vh;
+  }
+}
+
+.fullScreen__info-image {
+  width: 100%;
+  height: 40%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  p {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding: 2.5rem;
+    color: white;
+    font-size: 3rem;
+    font-weight: 600;
+    div {
+      margin-left: 0.5rem;
+      display: inline-block;
+    }
+    .fullScreen__info-rate {
+      position: relative;
+    }
+    .fullScreen__info-fill-star {
+      position: absolute;
+      color: #fbff00;
+
+      overflow: hidden;
+    }
+    .fullScreen__info-blank-star {
+      color: #aaa9a9;
+    }
+  }
+}
+
+.fullScreen__info-box {
+  display: flex;
+  flex-direction: column;
 }

@@ -17,7 +17,7 @@ const Banner = ({ movie }: IProps) => {
       }}
     >
       <div>
-        <p>{movie._brand === "movie" ? movie.overview : movie.overview}</p>
+        <p>{movie.overview}</p>
       </div>
     </div>
   );

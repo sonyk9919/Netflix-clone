@@ -194,7 +194,7 @@ const Slider = ({ contents, category, sliderId }: IProps) => {
                 className="slider__col-info"
                 variants={ElementInfoVar}
               >
-                {item._brand === "movie" ? item.title : item.name}
+                {"title" in item ? item.title : "name" in item ? item.name : ""}
               </motion.div>
             </motion.div>
           ))}

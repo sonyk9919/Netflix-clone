@@ -3,7 +3,6 @@ import axios from "axios";
 const APIKEY = process.env.REACT_APP_API_KEY;
 
 export interface IMovie {
-  _brand: "movie";
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -42,7 +41,6 @@ export const getMovieDetails = async (id: number) => {
 };
 
 export interface ITv {
-  _brand: "tv";
   id: number;
   poster_path: string;
   backdrop_path: string;
@@ -70,4 +68,5 @@ export const getTvDetails = async (id: number) => {
   const data = await axios.get(
     `https://api.themoviedb.org/3/tv/${id}?api_key=${APIKEY}&language=ko-KR`
   );
+  return data.data;
 };
