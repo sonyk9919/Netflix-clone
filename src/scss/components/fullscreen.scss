@@ -126,8 +126,10 @@
       }
     }
   }
+
   .fullScreen__info-box__col:last-child {
     color: white;
+    overflow-y: auto;
     span {
       display: block;
     }
