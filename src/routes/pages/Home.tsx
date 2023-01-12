@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { getNowPlayingMovies, IMovies } from "../../API/Movies";
@@ -16,6 +17,9 @@ const Home = () => {
 
   return (
     <div className="page__wrapper">
+      <Helmet>
+        <title>Netflix | Home</title>
+      </Helmet>
       {nowPlaying && <Banner movie={nowPlaying.results[0]} />}
       {nowPlaying && (
         <Slider

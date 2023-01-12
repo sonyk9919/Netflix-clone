@@ -22,6 +22,8 @@
   justify-content: flex-start;
   align-items: flex-start;
   @include mobile {
+    width: 35rem;
+    height: 75vh;
   }
   @include tablet {
     width: 70rem;
@@ -58,16 +60,55 @@
     .fullScreen__info-fill-star {
       position: absolute;
       color: #fbff00;
-
       overflow: hidden;
     }
     .fullScreen__info-blank-star {
       color: #aaa9a9;
     }
+    @include mobile {
+      font-size: 1.5rem;
+    }
   }
+}
+
+.fullScreen__info-box__col {
+  width: 100%;
 }
 
 .fullScreen__info-box {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  font-weight: 600;
+  .fullScreen__info-box__col:first-child {
+    color: white;
+    border-bottom: 1px solid rgb(85, 85, 85);
+    @include desktop {
+      padding: 0 3rem;
+      padding-bottom: 3rem;
+      span {
+        display: block;
+        margin: 1rem 0;
+      }
+      p {
+        font-size: 2rem;
+        line-height: 2.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid white;
+      }
+    }
+  }
+  .fullScreen__info-box__col:last-child {
+    color: white;
+    @include desktop {
+      padding: 0 3rem;
+      span {
+        display: block;
+        margin: 1rem 0;
+      }
+    }
+  }
+  @include desktop {
+    font-size: 3rem;
+  }
 }

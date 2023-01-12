@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Outlet } from "react-router-dom";
 import { getTvPopular, ITvs } from "../../API/Movies";
 import Banner from "../../components/banner/banner";
@@ -13,6 +14,9 @@ const TvShows = () => {
   }, []);
   return (
     <div className="page__wrapper">
+      <Helmet>
+        <title>Netflix | TV</title>
+      </Helmet>
       {tvOnTheAir && <Banner movie={tvOnTheAir.results[0]} />}
       {tvOnTheAir && (
         <Slider

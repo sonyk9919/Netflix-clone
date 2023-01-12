@@ -52,11 +52,14 @@ const FullScreen = () => {
           }}
         >
           <p>
-            {movieContent !== null
-              ? movieContent.title
-              : tvContent !== null
-              ? tvContent.name
-              : ""}
+            <span>
+              {movieContent !== null
+                ? movieContent.title
+                : tvContent !== null
+                ? tvContent.name
+                : ""}
+            </span>
+
             <div className="fullScreen__info-rate">
               <div
                 className="fullScreen__info-fill-star"
@@ -87,8 +90,29 @@ const FullScreen = () => {
           </p>
         </div>
         <div className="fullScreen__info-box">
-          <div className="fullScreen__info-box__col"></div>
-          <div className="fullScreen__info-box__col"></div>
+          <div className="fullScreen__info-box__col">
+            <span>소개</span>
+            <p>
+              {movieContent !== null
+                ? movieContent.overview
+                : tvContent !== null
+                ? tvContent.overview
+                : ""}
+            </p>
+            <span>
+              평점:{" "}
+              {movieContent !== null
+                ? Math.round(movieContent.vote_average)
+                : tvContent !== null
+                ? Math.round(tvContent.vote_average)
+                : 0}
+              점
+            </span>
+            <p></p>
+          </div>
+          <div className="fullScreen__info-box__col">
+            <span>추천</span>
+          </div>
         </div>
       </motion.div>
     </div>

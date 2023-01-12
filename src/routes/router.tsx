@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FullScreen from "../components/FullScreen/FullScreen";
 import Header from "../components/header/header";
@@ -7,6 +8,9 @@ import TvShows from "./pages/TvShows";
 const Router = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Helmet>
+        <link rel="icon" href="../resource/images/favicon.ico" />
+      </Helmet>
       <Header />
       <Routes>
         <Route path="/" element={<Home />}>
