@@ -2,7 +2,16 @@ import { useRef, useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import "../../scss/components/FullScreen/fullscreen.scss";
-import { IMovie, ITv, getTvDetails, getMovieDetails } from "../../API/Movies";
+import {
+  IMovie,
+  ITv,
+  getTvDetails,
+  getMovieDetails,
+  getTvSimular,
+  getMovieSimular,
+  ITvs,
+  IMovies,
+} from "../../API/Movies";
 import QueryString from "qs";
 import { getPosterImg } from "../../API/Poster";
 import Content from "./Content";
@@ -10,7 +19,7 @@ import Content from "./Content";
 const FullScreen = () => {
   const [movieContent, setMovieContent] = useState<IMovie | null>(null);
   const [tvContent, setTvContent] = useState<ITv | null>(null);
-  const [simularContents, setSimularContents] = useState<ITv | IMovie>();
+  const [simularContents, setSimularContents] = useState<ITvs | IMovies>();
   const sliderId = useRef(
     QueryString.parse(decodeURIComponent(window.location.search).slice(1)).id
   );
@@ -22,13 +31,20 @@ const FullScreen = () => {
   };
   const url = useRef(location.pathname.split("/"));
   useEffect(() => {
-    if (url.current[1] === "tv") {
-      getTvDetails(parseInt(url.current[2])).then((tv) =>
+    const urlLength = url.current.length;
+    if (url.current.includes("tv")) {
+      getTvDetails(parseInt(url.current[urlLength - 1])).then((tv) =>
         setTvContent((prev) => tv)
       );
+      getTvSimular(parseInt(url.current[urlLength - 1])).then((tvs) =>
+        setSimularContents((prev) => tvs)
+      );
     } else {
-      getMovieDetails(parseInt(url.current[1])).then((movie) =>
+      getMovieDetails(parseInt(url.current[urlLength - 1])).then((movie) =>
         setMovieContent((prev) => movie)
+      );
+      getMovieSimular(parseInt(url.current[urlLength - 1])).then((movies) =>
+        setSimularContents((prev) => movies)
       );
     }
   }, []);
@@ -49,7 +65,7 @@ const FullScreen = () => {
             )})`,
           }}
         >
-          <p>
+          <div className="fullScreen__title">
             <span>{movieContent?.title ?? tvContent?.name ?? ""}</span>
             <div className="fullScreen__info-rate">
               <div
@@ -74,7 +90,7 @@ const FullScreen = () => {
                 <span>★</span>
               </div>
             </div>
-          </p>
+          </div>
         </div>
         <div className="fullScreen__info-box">
           <div className="fullScreen__info-box__col">
@@ -98,11 +114,10 @@ const FullScreen = () => {
           <div className="fullScreen__info-box__col">
             <span>추천</span>
             <div className="fullScreen__info-box__simular">
-              <Content />
-              <Content />
-              <Content />
-              <Content />
-              <Content />
+              {simularContents &&
+                simularContents.results
+                  .slice(0, 9)
+                  .map((item, idx) => <Content key={idx} Content={item} />)}
             </div>
           </div>
         </div>
