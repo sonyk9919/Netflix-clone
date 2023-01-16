@@ -1,4 +1,4 @@
-@import "../index.scss";
+@import "../../index.scss";
 
 .fullScreen__background {
   position: fixed;
@@ -160,5 +160,25 @@
   }
   @include desktop {
     font-size: 3rem;
+  }
+}
+
+.fullScreen__info-box__simular {
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+  max-height: 32rem;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @include tablet {
+    gap: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

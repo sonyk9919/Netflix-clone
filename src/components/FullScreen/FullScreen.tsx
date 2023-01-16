@@ -1,14 +1,16 @@
 import { useRef, useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import "../../scss/components/fullscreen.scss";
+import "../../scss/components/FullScreen/fullscreen.scss";
 import { IMovie, ITv, getTvDetails, getMovieDetails } from "../../API/Movies";
 import QueryString from "qs";
 import { getPosterImg } from "../../API/Poster";
+import Content from "./Content";
 
 const FullScreen = () => {
   const [movieContent, setMovieContent] = useState<IMovie | null>(null);
   const [tvContent, setTvContent] = useState<ITv | null>(null);
+  const [simularContents, setSimularContents] = useState<ITv | IMovie>();
   const sliderId = useRef(
     QueryString.parse(decodeURIComponent(window.location.search).slice(1)).id
   );
@@ -43,33 +45,18 @@ const FullScreen = () => {
           className="fullScreen__info-image"
           style={{
             backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${getPosterImg(
-              movieContent !== null
-                ? movieContent.backdrop_path
-                : tvContent !== null
-                ? tvContent.backdrop_path
-                : ""
+              movieContent?.backdrop_path ?? tvContent?.backdrop_path ?? ""
             )})`,
           }}
         >
           <p>
-            <span>
-              {movieContent !== null
-                ? movieContent.title
-                : tvContent !== null
-                ? tvContent.name
-                : ""}
-            </span>
-
+            <span>{movieContent?.title ?? tvContent?.name ?? ""}</span>
             <div className="fullScreen__info-rate">
               <div
                 className="fullScreen__info-fill-star"
                 style={{
                   width: `${getStarWidth(
-                    movieContent !== null
-                      ? movieContent.vote_average
-                      : tvContent !== null
-                      ? tvContent.vote_average
-                      : 0
+                    movieContent?.vote_average ?? tvContent?.vote_average ?? 0
                   )}%`,
                 }}
               >
@@ -101,17 +88,22 @@ const FullScreen = () => {
             </p>
             <span>
               평점:{" "}
-              {movieContent !== null
-                ? Math.round(movieContent.vote_average)
-                : tvContent !== null
-                ? Math.round(tvContent.vote_average)
-                : 0}
+              {Math.round(
+                movieContent?.vote_average ?? tvContent?.vote_average ?? 0
+              )}
               점
             </span>
             <p></p>
           </div>
           <div className="fullScreen__info-box__col">
             <span>추천</span>
+            <div className="fullScreen__info-box__simular">
+              <Content />
+              <Content />
+              <Content />
+              <Content />
+              <Content />
+            </div>
           </div>
         </div>
       </motion.div>

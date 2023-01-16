@@ -40,6 +40,13 @@ export const getMovieDetails = async (id: number) => {
   return data.data;
 };
 
+export const getMovieSimular = async (id: number) => {
+  const data = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${APIKEY}&language=ko-KR&page=1`
+  );
+  return data.data;
+};
+
 export interface ITv {
   id: number;
   poster_path: string;
@@ -67,6 +74,13 @@ export const getTvPopular = async () => {
 export const getTvDetails = async (id: number) => {
   const data = await axios.get(
     `https://api.themoviedb.org/3/tv/${id}?api_key=${APIKEY}&language=ko-KR`
+  );
+  return data.data;
+};
+
+export const getTvSimular = async (id: number) => {
+  const data = await axios.get(
+    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${APIKEY}&language=ko-KR&page=1`
   );
   return data.data;
 };
