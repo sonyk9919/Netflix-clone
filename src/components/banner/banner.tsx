@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IMovie, ITv } from "../../API/Movies";
 import { getPosterImg } from "../../API/Poster";
@@ -41,4 +42,4 @@ const Banner = ({ movie }: IProps) => {
   );
 };
 
-export default Banner;
+export default React.memo(Banner);

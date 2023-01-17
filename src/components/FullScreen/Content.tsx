@@ -1,3 +1,4 @@
+import React from "react";
 import { IMovie, ITv } from "../../API/Movies";
 import { getPosterImg } from "../../API/Poster";
 import "../../scss/components/FullScreen/content.scss";
@@ -26,4 +27,4 @@ const Content = ({ Content }: IProps) => {
   );
 };
 
-export default Content;
+export default React.memo(Content);

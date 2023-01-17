@@ -1,3 +1,4 @@
+import React from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { IMovie, ITv } from "../../API/Movies";
@@ -207,4 +208,4 @@ const Slider = ({ contents, category, sliderId }: IProps) => {
   );
 };
 
-export default Slider;
+export default React.memo(Slider);

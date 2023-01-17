@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../../scss/components/header.scss";
 import { Link } from "react-router-dom";
 import { Variants, motion, useAnimationControls } from "framer-motion";
@@ -88,4 +88,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

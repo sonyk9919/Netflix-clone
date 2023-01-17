@@ -33,6 +33,13 @@ export const getNowPlayingMovies = async () => {
   return data.data;
 };
 
+export const getTopRated = async () => {
+  const data = await axios.get(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${APIKEY}&language=ko-KR&page=1`
+  );
+  return data.data;
+};
+
 export const getMovieDetails = async (id: number) => {
   const data = await axios.get(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}&language=ko-KR`
@@ -67,6 +74,13 @@ export interface ITvs {
 export const getTvPopular = async () => {
   const data = await axios.get(
     `https://api.themoviedb.org/3/tv/popular?api_key=${APIKEY}&language=ko-KR&page=1`
+  );
+  return data.data;
+};
+
+export const getTvTopRated = async () => {
+  const data = await axios.get(
+    `https://api.themoviedb.org/3/tv/top_rated?api_key=${APIKEY}&language=ko-KR&page=1`
   );
   return data.data;
 };
