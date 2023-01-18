@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IMovie, ITv } from "../../API/Movies";
-import { getPosterImg } from "../../API/Poster";
+import { getBannerImg } from "../../API/Poster";
 import "../../scss/components/banner.scss";
 
 interface IProps {
@@ -21,7 +21,7 @@ const Banner = ({ movie }: IProps) => {
     <div
       className="banner"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${getPosterImg(
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${getBannerImg(
           movie.backdrop_path
         )})`,
       }}

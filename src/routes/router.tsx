@@ -4,12 +4,13 @@ import FullScreen from "../components/FullScreen/FullScreen";
 import Header from "../components/header/header";
 import Home from "./pages/Home";
 import TvShows from "./pages/TvShows";
+import favicon from "../resource/images/favicon.png";
 
 const Router = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Helmet>
-        <link rel="icon" href="../resource/images/favicon.ico" />
+        <link rel="icon" href={favicon} />
       </Helmet>
       <Header />
       <Routes>
