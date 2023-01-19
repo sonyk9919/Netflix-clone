@@ -1,4 +1,3 @@
-import React from "react";
 import Router from "./routes/router";
 import "./scss/reset.scss";
 
